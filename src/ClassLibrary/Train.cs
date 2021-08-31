@@ -13,6 +13,37 @@ namespace ClassLibrary
     /// </summary>
     public class Train
     {
+
+        private static int count = 0;
+        private static string identifier = "";
+
+
+        /// <summary>
+        /// Obtiene un valor que indica si las maquinas del tren han sido encendidas o no.
+        /// </summary>
+        /// <value><c>true</c> si las máquinas fueron encendidas, <c>false</c> en caso contrario.</value>
+        public string Identifier { get; private set; }
+       
+
+
+        /// <summary>
+        /// Enciende las máquinas del tren.
+        /// </summary>
+        /// <returns>
+        /// <c>true</c> si las máquinas pueden ser encendidas, <c>false</c> en caso contrario.
+        /// </returns>
+        public Train(string identifier){
+            this.Identifier = identifier;
+            count = count + 1;
+        }
+
+        public static int GetCount() { 
+            return Train.count;
+        }
+
+
+
+
         /// <summary>
         /// Obtiene un valor que indica si las maquinas del tren han sido encendidas o no.
         /// </summary>
@@ -44,6 +75,7 @@ namespace ClassLibrary
         /// <returns>
         /// <c>true</c> si las máquinas pueden ser detenidas, <c>false</c> en caso contrario.
         /// </returns>
+        
         public bool StopEngines()
         {
             if (this.IsEngineStarted)
@@ -55,6 +87,18 @@ namespace ClassLibrary
 
             Console.Write("The engines are already stopped");
             return this.IsEngineStarted;
+        }
+    
+    
+        /// <summary>
+        /// Destruye las instancias 
+        /// </summary>
+        /// <returns>
+        /// <c>true</c> si las máquinas pueden ser detenidas, <c>false</c> en caso contrario.
+        /// </returns>
+        ~Train()
+        {
+        count--;
         }
     }
 }
